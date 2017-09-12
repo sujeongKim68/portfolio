@@ -1,0 +1,75 @@
+/* design selectbox */
+
+.designSelectW {
+    display: block;
+}
+.select-content {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.select-title {
+    border: 1px solid #e8e8e8;
+    height: 30px;
+    line-height: 30px;
+    position: relative;
+}
+.select-title:before {
+    content:'';
+    background: url(../img/select_arrow.png) 0 0 no-repeat;
+    -webkit-background-size: contain;
+    background-size: contain;
+    position: absolute;
+    top: 0;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+}
+.select-content a {
+    padding: 0 8px;
+    line-height: 30px;
+    display: block;
+    font-size: 12px;
+}
+.select-content a:hover,
+.select-content a:focus {
+    text-decoration: none;
+    cursor: pointer;
+}
+.select-content .select-title a {
+    display: block;
+    color: #aaaaaa;
+}
+.select-content .select-list {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    border: 1px solid #0088cc;
+    background: #fff;
+}
+.select-content .select-list a {
+    color: #333;
+}
+.select-content .select-list a:hover {
+    background: #f8f8f8;
+}
+
+@media screen and (max-width: 768px) {
+    .select-title {
+        height: 26px;
+        line-height: 26px;
+    }
+    .select-content a {
+        font-size: 12px;
+        line-height: 25px;
+    }
+    .select-title:before {
+        top: 10px;
+        right: 10px;
+    }
+}
+
+

@@ -1,0 +1,227 @@
+//mixin usage
+// Push auto
+@mixin push-auto {
+  margin: {
+    left: auto;
+    right: auto;
+  }
+}
+
+// font style
+@mixin fs($fz, $c, $fw){
+  font-size: $fz + px;
+  color: $c;
+  font-weight: $fw;
+}
+
+// Set a rem font size with pixel fallback
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+//Usage:
+//p {
+//  @component font-size(14px)
+//}
+
+
+
+// Pseudo
+@mixin pseudo($display: block, $pos: absolute, $content: ''){
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+//Usage:
+//div::after {
+//  @component pseudo;
+//  top: -1rem; left: -1rem;
+//  width: 1rem; height: 1rem;
+//}
+
+
+
+// Responsive ratio
+@mixin responsive-ratio($x,$y, $pseudo: false) {
+  $padding: unquote( ( $y / $x ) * 100 + '%' );
+  @if $pseudo {
+    &:before {
+      @include pseudo($pos: relative);
+      width: 100%;
+      padding-top: $padding;
+    }
+  } @else {
+    padding-top: $padding;
+  }
+}
+
+
+
+// CSS triangles
+@mixin css-triangle($color, $direction, $size: 6px, $position: absolute, $round: false){
+  @include pseudo($pos: $position);
+  width: 0;
+  height: 0;
+  @if $round {
+    border-radius: 3px;
+  }
+  @if $direction == down {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-top: $size solid $color;
+    margin-top: 0 - round( $size / 2.5 );
+  } @else if $direction == up {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-bottom: $size solid $color;
+    margin-bottom: 0 - round( $size / 2.5 );
+  } @else if $direction == right {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-left: $size solid $color;
+    margin-right: -$size;
+  } @else if  $direction == left {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-right: $size solid $color;
+    margin-left: -$size;
+  }
+}
+
+
+// Placeholders
+@mixin input-placeholder {
+  &.placeholder { @content; }
+  &:-moz-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &:-ms-input-placeholder { @content; }
+  &::-webkit-input-placeholder { @content; }
+}
+//Usage:
+//input,
+//textarea {
+//  @component input-placeholder {
+//    color: $grey;
+//  }
+//}
+
+
+
+// Media queries
+@mixin screen-lg {
+  @media only screen and (max-width: 1200px) {
+    @content;
+  }
+}
+@mixin screen-md {
+  @media only screen and (max-width: 992px) {
+    @content;
+  }
+}
+@mixin screen-sm {
+  @media only screen and (max-width: 768px) {
+    @content;
+  }
+}
+@mixin screen-xs {
+  @media only screen and (max-width: 542px) {
+    @content;
+  }
+}
+//Usage:
+//.sidebar {
+//  @component xs {
+
+//  }
+//}
+
+
+
+// Animations and keyframes
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
+  @-ms-keyframes #{$animation-name} {
+    @content;
+  }
+  @-o-keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};
+}
+//Usage:
+//@component keyframes(slide-down) {
+//  0% { opacity: 1; }
+//  90% { opacity: 0; }
+//}
+//
+//.element {
+//  width: 100px;
+//  height: 100px;
+//  background: black;
+//  @component animation('slide-down 5s 3');
+//}
+
+
+
+// Truncate
+@mixin truncate($truncation-boundary) {
+  max-width: $truncation-boundary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+// Clearfix
+%clearfix {
+  *zoom: 1;
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+//Usage:
+//.container-with-floated-children {
+//  @extend %clearfix;
+//}
+
+
+
+// Visually hide an element
+%visuallyhidden {
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  position: absolute;
+}
+//Usage:
+//.visually-hidden {
+//  @extend %visuallyhidden;
+//}

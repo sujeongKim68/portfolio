@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Notice</title>
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- lib js -->
+    <script src="assets/js/lib/jquery-1.12.2.min.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="notice-wrap" class="sub-wrap">
+    <section class="notice">
+        <div class="page-title">
+            <div class="container">
+                <h3>공지사항</h3>
+            </div>
+        </div>
+
+        <!-- board search area -->
+        <div class="board-search">
+            <div class="container">
+                <div class="search-window">
+                    <form action="#!" method="get">
+                        <div class="search-wrap">
+                            <label for="search" class="blind">공지사항 내용 검색</label>
+                            <input type="search" id="search" placeholder="검색어를 입력해주세요.">
+                            <button type="submit" class="btn-dark btn">검색</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- board list area -->
+        <div class="board-list">
+            <div class="container">
+                <table class="board-table">
+                    <thead>
+                    <tr>
+                        <th class="th-num">번호</th>
+                        <th scope="col" class="th-title">제목</th>
+                        <th class="th-date">등록일</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>3</td>
+                        <th>
+                            <a href="#!">연락처 안내</a>
+                            <p>010-2476-1551 혹은 sjorbit@naver.com으로 연락주시면 확인 가능합니다.</p>
+                        </th>
+                        <td>2017.08.30</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <th>
+                            <a href="#!">웹 퍼블리셔 구직 중입니다. 소중한 연락을 기다리겠습니다.</a>
+                            <p>서울지역 웹 퍼블리셔 구직 상태입니다. 구직 완료시 재 공지드릴 예정입니다.</p>
+                        </th>
+                        <td>2017.08.30</td>
+                    </tr>
+
+                    <tr>
+                        <td>1</td>
+                        <th>
+                            <a href="#!">게시판 용도 안내</a>
+                            <p>자주 들어오는 질문이나 제 상황에 대해 알리는 곳입니다.</p>
+                        </th>
+                        <td>2017.07.24</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<script>
+    var pfNotice = {
+        slideBoard : function () {
+            var root = $('section.notice'),
+                title = root.find('.board-list tbody th');
+
+            title.on('click', 'a', function () {
+                $(this).siblings('p').slideToggle();
+            });
+        }
+    };
+
+    pfNotice.slideBoard();
+</script>
+</body>
+</html>

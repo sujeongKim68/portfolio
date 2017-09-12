@@ -1,0 +1,33 @@
+/* Footer */
+
+footer{
+  background: #f7f7f7;
+  text-align: center;
+  padding-bottom: 20px;
+  .footer-nav{
+    a{
+      color: #222222;
+      padding: 20px;
+      display: inline-block;
+      &:hover{
+        color: #0088cc;
+      }
+    }
+  }
+  p{
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 767px) {
+  footer {
+    .footer-nav {
+      a{
+        font-size: 12px;
+      }
+    }
+    p{
+      font-size: 10px;
+    }
+  }
+}

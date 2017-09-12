@@ -1,0 +1,13 @@
+*.idea
+www/data/session/
+
+/.idea
+*.iml
+*.log
+*.log.*
+
+
+*/*/*.idea
+
+
+*.bak
